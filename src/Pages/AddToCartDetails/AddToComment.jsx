@@ -1,5 +1,4 @@
 /* eslint-disable react/prop-types */
-import { useLocation } from "react-router-dom";
 import useComment from "../../hook/useComment";
 import useAuth from "../../hook/useAuth";
 import useAxiosPublic from "../../hook/useAxiosPublic";
@@ -7,7 +6,6 @@ import { useState } from "react";
 import GetCurrentDateTime from "../../component/utils/GetCurrentDateTime";
 import { toast } from "react-toastify";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
-import useTopBooks from "../../hook/useTopBooks";
 import { Rating } from "@smastrom/react-rating";
 import userImg from '../../assets/images/logo/user.jpg'
 

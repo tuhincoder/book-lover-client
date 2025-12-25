@@ -1,7 +1,8 @@
 {
   "projects": {
     "default": "library-6ad86",
-    "y": "library-6ad86"
+    "y": "library-6ad86",
+    "prod": "booko-lovers"
   },
   "targets": {},
   "etags": {},

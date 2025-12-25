@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import banner1 from '../../../assets/images/banner/banner1.jpg'
 import banner2 from '../../../assets/images/banner/banner2.jpg'
 import banner3 from '../../../assets/images/banner/banner3.jpg'
@@ -27,7 +28,9 @@ const Banner = () => {
                     <div className='text-white space-y-5  text-center mt-5 '>
                         <h4 className='text-lg font-bold'>Choose Your Book</h4>
                         {/* <h1 className=' '>Find Books For <br /> All Ages</h1> */}
+
                         <button className="btn  hover:bg-white btn-error font-bold   mt-8">Discover Your Next Book</button>
+
                     </div>
                 </div>
 

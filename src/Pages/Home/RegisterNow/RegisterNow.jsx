@@ -37,10 +37,11 @@ const RegisterNow = () => {
             }
             console.log(formInfo);
             axiosPublic.post('/registerForm', formInfo)
-            refetch()
                 .then(res => {
-                    // console.log(res.data);
+                    console.log(res.data);
                     if (res.data.insertedId) {
+                        refetch()
+                        document.getElementById('formId').reset()
                         Swal.fire({
                             title: "Confirm registration!",
                             text: "Your request is accepted.",
@@ -81,7 +82,7 @@ const RegisterNow = () => {
                         <p className="text-gray-500">Our Popular Library offers a wide range of books and resources for all ages.</p>
                     </div>
 
-                    <form onSubmit={handleSubmit} className="card-body">
+                    <form id="formId" onSubmit={handleSubmit} className="card-body">
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                             <div className="form-control w-full">
                                 <label className="label">

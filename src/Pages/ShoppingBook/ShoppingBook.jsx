@@ -9,7 +9,7 @@ import ShoppingBookCart from "./ShoppingBookCart";
 const ShoppingBook = () => {
     const [books] = useBooks()
     const [categoriesBook, isLoading] = useCateBooks()
-
+    console.log(categoriesBook);
 
 
     if (isLoading) {
@@ -23,14 +23,14 @@ const ShoppingBook = () => {
                     <h2>Showing 1-3 Of 34 Results</h2>
                 </div>
                 <div>
-                    <select className="focus-visible:outline-none w-full max-w-xs">
-                        <option disabled selected>Default sorting</option>
+                    <select defaultValue="default" className="focus-visible:outline-none w-full max-w-xs">
+                        <option disabled value="default">Default sorting</option>
                         <option>Sort by popularity</option>
                         <option>sort by average rating</option>
                         <option>sort by latest</option>
                     </select>
                 </div>
-            </div>
+            </div >
             <div className="grid md:grid-cols-6 gap-5 ">
                 <div className="md:col-span-2 px-5 space-y-3">
                     <h2 className="text-2xl text-[#052c65] mb-4 font-medium">Search</h2>
@@ -64,14 +64,14 @@ const ShoppingBook = () => {
                     {/* product status */}
                     <div>
                         <h2 className="text-2xl text-[#052c65] mb-4 font-medium">Product Status</h2>
-                        <select className="select text-[#052c65] text-lg capitalize select-bordered w-full max-w-xs">
-                            <option disabled selected>In Stock</option>
+                        <select defaultValue="default" className="select text-[#052c65] text-lg capitalize select-bordered w-full max-w-xs">
+                            <option disabled value="default">In Stock</option>
                             <option>Castile in the Sky</option>
                             <option>The Hidden Mystery Behind</option>
                             <option>Flovely And Unicoma Erna</option>
                         </select>
-                        <select className="select select-bordered w-full max-w-xs text-[#052c65] text-lg mt-3">
-                            <option disabled selected>On Sale</option>
+                        <select defaultValue="default" className="select select-bordered w-full max-w-xs text-[#052c65] text-lg mt-3">
+                            <option disabled value="default">On Sale</option>
                             <option>Flovely Unicoma Erna</option>
                             <option>Castle in the sky</option>
                             <option>How deal with very bad book</option>

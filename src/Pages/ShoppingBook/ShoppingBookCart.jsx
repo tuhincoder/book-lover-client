@@ -8,12 +8,12 @@ const ShoppingBookCart = ({ book }) => {
 
     return (
         <div>
-            <div className="bg-base-100 md:w-60">
+            <div className="bg-base-100 md:w-60 ">
                 <figure className="px-10 pt-10 rounded-md bg-gray-100">
                     <img
                         src={image}
                         alt="Shoes"
-                        className="rounded-xl h-[200px] w-3/4 mx-auto object-cover" />
+                        className="hover:scale-95 duration-500 transition  rounded-xl h-[200px] w-3/4 mx-auto object-cover" />
                 </figure>
                 <div className="px-4 py-2">
                     <h2 className="text-[#052c65] text-xl capitalize">{name}</h2>

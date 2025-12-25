@@ -8,14 +8,10 @@ import { useState } from "react";
 import Modal from "../../component/utils/TopNavbar/Modal";
 import { CgShoppingCart } from "react-icons/cg";
 import { GiSelfLove } from "react-icons/gi";
-import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import useAuth from "../../hook/useAuth";
 import useAxiosPublic from "../../hook/useAxiosPublic";
-import toast from "react-hot-toast";
-import useComment from "../../hook/useComment";
-import GetCurrentDateTime from "../../component/utils/GetCurrentDateTime";
-import userImg from '../../assets/images/logo/user.jpg'
+
 import Swal from "sweetalert2";
 
 import Loader from "../../component/Loader/Loader";
@@ -30,7 +26,7 @@ import useCarts from "../../hook/useCarts";
 const AddToCartDetails = () => {
     const location = useLocation()
     const [books] = useBooks()
-    const [carts, refetch, isLoading] = useCarts()
+    const [, refetch, isLoading] = useCarts()
     const navigate = useNavigate()
     const { user } = useAuth()
     const axiosPublic = useAxiosPublic()

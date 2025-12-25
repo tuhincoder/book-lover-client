@@ -22,15 +22,15 @@ const BookingRegistration = () => {
                     <div className="flex w-full justify-between py-2">
                         <div className="space-y-1 text-center">
                             <p className="text-gray-500 dark:text-white/70">Registration</p>
-                            <p className="font-mono text-xl text-gray-700 dark:text-white/50">{registrations.length}</p>
+                            <p className="font-mono text-sm text-gray-700 dark:text-white/50">{registrations.length}</p>
                         </div>
                         <div className="space-y-1 text-center">
                             <p className="text-gray-500 dark:text-white/70">Phone</p>
-                            <p className="font-mono text-xl text-gray-700 dark:text-white/50">{registrations[0]?.phone}</p>
+                            <p className="font-mono text-sm text-gray-700 dark:text-white/50">{registrations[0]?.phone}</p>
                         </div>
                         <div className="space-y-1 text-center ">
                             <p className="text-gray-500 dark:text-white/70">date</p>
-                            <p className="font-mono text-xl text-gray-700 dark:text-white/50">{registrations[0]?.date}</p>
+                            <p className="font-mono text-sm text-gray-700 dark:text-white/50">{registrations[0]?.date}</p>
                         </div>
                     </div>
                     {/* bio  */}
