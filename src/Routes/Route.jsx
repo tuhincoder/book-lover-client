@@ -20,102 +20,105 @@ import RegisterNow from "../Pages/Home/RegisterNow/RegisterNow";
 import BookingRegistration from "../Pages/BookingRegistration/BookingRegistration";
 import ShoppingBook from "../Pages/ShoppingBook/ShoppingBook";
 
-
-
 const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <MainLayOut></MainLayOut>,
+    errorElement: <ErrorPage />,
+    children: [
+      {
+        path: "/",
+        element: <Home />,
+      },
 
-    {
-        path: '/',
-        element: <MainLayOut></MainLayOut>,
-        errorElement: <ErrorPage />,
-        children: [
-            {
-                path: '/',
-                element: <Home />
-            },
+      {
+        path: "/addBook",
+        element: <AddBook></AddBook>,
+      },
 
-            {
-                path: '/addBook',
-                element: <AddBook></AddBook>,
+      {
+        path: "/bookCategories/:category",
+        element: <BookCategory></BookCategory>,
+      },
+      {
+        path: "/addToCartDetails/:id",
+        element: <AddToCartDetails />,
+        loader: ({ params }) =>
+          fetch(`https://book-lovers-server.vercel.app/topBooks/${params.id}`),
+      },
+      {
+        path: "/categoryBookDetails/:id",
+        element: (
+          <PrivetRout>
+            <BookDetails></BookDetails>
+          </PrivetRout>
+        ),
+        loader: ({ params }) =>
+          fetch(`https://book-lovers-server.vercel.app/books/${params.id}`),
+      },
+      {
+        path: "/readDetails/:id",
+        element: <ReadDetails></ReadDetails>,
+        loader: ({ params }) =>
+          fetch(`https://book-lovers-server.vercel.app/books/${params.id}`),
+      },
 
-            },
-
-            {
-                path: '/bookCategories/:category',
-                element: <BookCategory></BookCategory>,
-
-
-            },
-            {
-                path: '/addToCartDetails/:id',
-                element: <AddToCartDetails />,
-                loader: ({ params }) => fetch(`https://book-lovers-server-tawny.vercel.app/topBooks/${params.id}`)
-
-
-            },
-            {
-                path: '/categoryBookDetails/:id',
-                element: <PrivetRout><BookDetails></BookDetails></PrivetRout>,
-                loader: ({ params }) => fetch(`https://book-lovers-server-tawny.vercel.app/books/${params.id}`)
-            },
-            {
-                path: '/readDetails/:id',
-                element: <ReadDetails></ReadDetails>,
-                loader: ({ params }) => fetch(`https://book-lovers-server-tawny.vercel.app/books/${params.id}`)
-
-            },
-
-            {
-                path: '/allBook',
-                element: <PrivetRout><AllBooks /></PrivetRout>
-            },
-            {
-                path: 'updateAllBook/:id',
-                element: <PrivetRout><UpdateBook></UpdateBook></PrivetRout>,
-                loader: ({ params }) => fetch(`https://book-lovers-server-tawny.vercel.app/books/${params.id}`)
-
-            },
-            {
-                path: '/borrowedBook',
-                element: <PrivetRout><BorrowedBooks /></PrivetRout>,
-
-            },
-            {
-                path: '/about',
-                element: <About />,
-
-            },
-            {
-                path: '/carts',
-                element: <Carts />,
-
-            },
-            {
-                path: '/liveChat',
-                element: <LiveChat />
-            },
-            {
-                path: '/registerNow',
-                element: <RegisterNow />
-            },
-            {
-                path: '/bookingRegistration',
-                element: <BookingRegistration />
-            },
-            {
-                path: '/shopping',
-                element: <ShoppingBook />
-            },
-        ]
-    },
-    {
-        path: '/login',
-        element: <LogIn />
-    },
-    {
-        path: '/register',
-        element: <Register />
-    }
-])
+      {
+        path: "/allBook",
+        element: <AllBooks />,
+      },
+      {
+        path: "updateAllBook/:id",
+        element: (
+          <PrivetRout>
+            <UpdateBook></UpdateBook>
+          </PrivetRout>
+        ),
+        loader: ({ params }) =>
+          fetch(`https://book-lovers-server.vercel.app/books/${params.id}`),
+      },
+      {
+        path: "/borrowedBook",
+        element: (
+          <PrivetRout>
+            <BorrowedBooks />
+          </PrivetRout>
+        ),
+      },
+      {
+        path: "/about",
+        element: <About />,
+      },
+      {
+        path: "/carts",
+        element: <Carts />,
+      },
+      {
+        path: "/liveChat",
+        element: <LiveChat />,
+      },
+      {
+        path: "/registerNow",
+        element: <RegisterNow />,
+      },
+      {
+        path: "/bookingRegistration",
+        element: <BookingRegistration />,
+      },
+      {
+        path: "/shopping",
+        element: <ShoppingBook />,
+      },
+    ],
+  },
+  {
+    path: "/login",
+    element: <LogIn />,
+  },
+  {
+    path: "/register",
+    element: <Register />,
+  },
+]);
 
 export default router;
