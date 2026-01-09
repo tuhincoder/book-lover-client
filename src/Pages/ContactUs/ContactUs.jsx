@@ -1,71 +1,114 @@
 import { toast } from "react-toastify";
 import Container from "../../component/common/Container";
 import { useState } from "react";
+import { FaPhoneAlt, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
 
 const ContactUs = () => {
-    const [inputValue, setInputValue] = useState('')
-    const handleSubmit = e => {
-        e.preventDefault()
-        console.log('click');
+  const [inputValue, setInputValue] = useState("");
 
-        if (inputValue) {
-            toast.success('Thank You for our connect.')
-            setInputValue('')
-        }
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (inputValue) {
+      toast.success("Thank You for connecting with us!");
+      setInputValue("");
     }
-    return (
-        <Container>
-            <div className="bg-gray-50  p-6">
-                <h2 className=" text-center text-lg md:text-3xl font-serif">For any communication requests, <br /> please contact our dealer</h2>
-                <div className="flex flex-col lg:flex-row items-center md:justify-between px-20 py-10">
-                    <div className=" text-lg text-gray-500">
-                        <h4>
-                            <p><b>Phone: </b>+844 123 456 78 / +844 123 456 79</p>
-                        </h4>
-                        <h4>
-                            <p><b>Mail: </b>Contact@yoursite.com</p>
-                        </h4>
-                    </div>
+  };
 
-                    <div className="md:text-center  ">
-                        <h4 className="">
-                            <p className="text-lg text-gray-500">
-                                <b>BookStore:  </b>Bookstore, CA 59246, Dhaka Uttara <br /> 4231, Bangladesh
-                            </p>
-                        </h4>
-                    </div>
-                </div>
-                {/* --- */}
-                <div>
-                    <form onSubmit={handleSubmit}>
-                        <div className="relative text-sm md:w-1/2 mx-auto">
-                            <input
-                                className="peer/email block w-full rounded-md border border-blue-400 bg-inherit p-2.5 shadow-lg outline-none"
-                                value={inputValue}
-                                onChange={(e) => setInputValue(e.target.value)}
-                                name="email"
-                                type="email"
-                                placeholder=""
-                                id="navigate_ui_email_33"
-                                required
-                            />
-                            <label
-                                className="absolute -top-2 left-2 rounded-md bg-blue-300 px-2 text-xs text-blue-600 duration-300 peer-placeholder-shown/email:top-3 peer-placeholder-shown/email:bg-transparent peer-placeholder-shown/email:text-sm peer-placeholder-shown/email:text-zinc-400 peer-focus/email:-top-2 peer-focus/email:bg-blue-300 peer-focus/email:text-xs peer-focus/email:text-blue-600"
-                                htmlFor="navigate_ui_email_33"
-                            >
-                                Email
-                            </label>
+  return (
+    <Container>
+      <div className="py-16">
+        <div className="bg-white rounded-[40px] shadow-2xl overflow-hidden border border-slate-100">
+          {/* Top Header Part */}
+          <div className="bg-[#052c65] p-10 md:p-16 text-center text-white">
+            <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter">
+              Contact Our <span className="text-red-500">Dealer</span>
+            </h2>
+            <p className="mt-4 text-slate-300 max-w-xl mx-auto font-medium">
+              For any communication requests or library inquiries, please reach
+              out to us through the channels below.
+            </p>
+          </div>
 
-                        </div>
-                        <div className="mx-auto mt-5 flex justify-center">
-                            <input className="bg-sky-300 w-40 rounded  border px-8 py-2    " type="submit" value="Submit" />
-                        </div>
-                    </form>
-                </div>
-
+          {/* Contact Info Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 px-6 md:px-12 -mt-10 relative z-10">
+            {/* Phone */}
+            <div className="bg-white p-8 rounded-3xl shadow-xl border-b-4 border-red-500 text-center space-y-3">
+              <div className="bg-red-50 w-12 h-12 rounded-full flex items-center justify-center mx-auto text-red-500">
+                <FaPhoneAlt />
+              </div>
+              <h4 className="font-bold text-[#052c65] uppercase tracking-wider">
+                Call Us
+              </h4>
+              <p className="text-slate-500 text-sm font-medium">
+                +844 123 456 78 <br /> +844 123 456 79
+              </p>
             </div>
-        </Container>
-    );
+
+            {/* Email */}
+            <div className="bg-white p-8 rounded-3xl shadow-xl border-b-4 border-[#052c65] text-center space-y-3">
+              <div className="bg-blue-50 w-12 h-12 rounded-full flex items-center justify-center mx-auto text-[#052c65]">
+                <FaEnvelope />
+              </div>
+              <h4 className="font-bold text-[#052c65] uppercase tracking-wider">
+                Email Us
+              </h4>
+              <p className="text-slate-500 text-sm font-medium">
+                Contact@yoursite.com <br /> support@library.com
+              </p>
+            </div>
+
+            {/* Location */}
+            <div className="bg-white p-8 rounded-3xl shadow-xl border-b-4 border-red-500 text-center space-y-3">
+              <div className="bg-red-50 w-12 h-12 rounded-full flex items-center justify-center mx-auto text-red-500">
+                <FaMapMarkerAlt />
+              </div>
+              <h4 className="font-bold text-[#052c65] uppercase tracking-wider">
+                Visit Us
+              </h4>
+              <p className="text-slate-500 text-sm font-medium">
+                Bookstore, CA 59246 <br /> Dhaka Uttara, Bangladesh
+              </p>
+            </div>
+          </div>
+
+          {/* Newsletter / Form Part */}
+          <div className="p-10 md:p-20">
+            <div className="max-w-2xl mx-auto text-center space-y-8">
+              <div>
+                <h3 className="text-2xl font-bold text-[#052c65]">
+                  Send us a Quick Message
+                </h3>
+                <p className="text-slate-400">
+                  Enter your email and we'll get back to you shortly.
+                </p>
+              </div>
+
+              <form onSubmit={handleSubmit} className="relative group">
+                <div className="flex flex-col md:flex-row items-center gap-4">
+                  <div className="relative w-full">
+                    <input
+                      className="w-full bg-slate-50 border-2 border-slate-100 rounded-2xl p-4 outline-none focus:border-red-500 focus:bg-white transition-all duration-300 shadow-inner"
+                      value={inputValue}
+                      onChange={(e) => setInputValue(e.target.value)}
+                      type="email"
+                      placeholder="yourname@email.com"
+                      required
+                    />
+                  </div>
+                  <button
+                    type="submit"
+                    className="w-full md:w-auto bg-[#052c65] hover:bg-red-600 text-white font-black px-10 py-4 rounded-2xl transition-all duration-500 shadow-lg active:scale-95 uppercase tracking-widest"
+                  >
+                    Submit
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </Container>
+  );
 };
 
 export default ContactUs;

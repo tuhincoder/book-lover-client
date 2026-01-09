@@ -1,58 +1,101 @@
 import Container from "../../component/common/Container";
-import HeaderText from "../../component/common/HeaderText";
-import faqImg from '../../assets/images/bookDetails/book1.jpg'
+import faqImg from "../../assets/images/bookDetails/book1.jpg";
 
 const Faq = () => {
-    return (
-        <Container>
-            <HeaderText Heading={'Frequently Asked Questions'} subHeading={'Here are  frequently asked '}></HeaderText>
-            <div className="md:flex gap-5 ">
-                <div className="flex-1">
-                    <img src={faqImg} className="w-full h-[350px] rounded object-cover" alt="faq image" />
+  return (
+    <Container>
+      <div className="pt-16">
+        {/* Manual Header - consistent with other sections */}
+        <div className="text-center mb-12 space-y-2">
+          <h2 className="text-3xl md:text-5xl font-black text-[#052c65] uppercase tracking-tighter">
+            Frequently Asked <span className="text-red-500">Questions</span>
+          </h2>
+          <div className="w-24 h-1.5 bg-red-500 mx-auto rounded-full"></div>
+          <p className="text-slate-500 hidden md:block font-medium pt-2">
+            Everything you need to know about our library services.
+          </p>
+        </div>
+
+        <div className="flex flex-col lg:flex-row gap-10 items-center">
+          {/* Left Side: Professional Image with Border Effect */}
+          <div className="flex-1 w-full relative group">
+            <div className="absolute -inset-2 bg-red-500/10 rounded-3xl blur-xl group-hover:bg-red-500/20 transition duration-500"></div>
+            <img
+              src={faqImg}
+              className="relative w-full h-[300px] md:h-[450px] rounded-3xl object-cover shadow-2xl border-4 border-white"
+              alt="faq image"
+            />
+          </div>
+
+          {/* Right Side: Accordion with Navy-Red Theme */}
+          <div className="flex-1 w-full">
+            <div className="join join-vertical w-full gap-3 bg-transparent">
+              {/* Question 1 */}
+              <div className="collapse collapse-arrow join-item border border-slate-200 bg-white rounded-2xl shadow-sm">
+                <input type="radio" name="my-accordion-4" defaultChecked />
+                <div className="collapse-title text-lg md:text-xl font-bold text-[#052c65]">
+                  How can I borrow a book from the library?
                 </div>
-                <div className="flex-1">
-                    <div className="join join-vertical w-full">
-                        <div className="collapse collapse-arrow join-item border border-base-300">
-                            <input type="radio" name="my-accordion-4" defaultChecked />
-                            <div className="collapse-title text-xl font-medium">
-                                How can I borrow a book from the library?
-                            </div>
-                            <div className="collapse-content">
-                                <p> To borrow a book from the library, simply browse our catalog to find the book you want. Once you have selected a book, click the Borrow button and fill in the necessary details. If the book is available, you will receive a confirmation email with the due date and instructions for pick-up. Please make sure to bring a valid ID when collecting your book.</p>
-                            </div>
-                        </div>
-                        <div className="collapse collapse-arrow join-item border border-base-300">
-                            <input type="radio" name="my-accordion-4" />
-                            <div className="collapse-title text-xl font-medium">
-                                What is the borrowing period for library books?
-                            </div>
-                            <div className="collapse-content">
-                                <p> The standard borrowing period for library books is 30 days. You can check the due date on your account or on the confirmation email you received when you borrowed the book. If you need more time, you can request a renewal online or at the library, provided no other users have reserved the book.</p>
-                            </div>
-                        </div>
-                        <div className="collapse collapse-arrow join-item border border-base-300">
-                            <input type="radio" name="my-accordion-4" />
-                            <div className="collapse-title text-xl font-medium">
-                                Can I reserve a book that is currently checked out?
-                            </div>
-                            <div className="collapse-content">
-                                <p>  Yes, you can place a hold on a book that is currently checked out. Once the book is returned, you will be notified, and it will be held for you for 3 days.</p>
-                            </div>
-                        </div>
-                        <div className="collapse collapse-arrow join-item border border-base-300">
-                            <input type="radio" name="my-accordion-4" />
-                            <div className="collapse-title text-xl font-medium">
-                                What should I do if the book I want is already borrowed?
-                            </div>
-                            <div className="collapse-content">
-                                <p>if the book you want is already borrowed, you can place a reservation on it. Go to the book is page in our catalog and click the Reserve button. You will be notified via email as soon as the book is returned and available for you to borrow. In the meantime, you might find similar books in our recommended section or consult with our library staff for alternatives.</p>
-                            </div>
-                        </div>
-                    </div>
+                <div className="collapse-content text-slate-600 leading-relaxed">
+                  <p>
+                    To borrow a book, browse our catalog and click the
+                    **Borrow** button. Once confirmed, you'll receive an email
+                    with instructions. Please bring a valid ID when collecting
+                    your book from the library desk.
+                  </p>
                 </div>
+              </div>
+
+              {/* Question 2 */}
+              <div className="collapse collapse-arrow join-item border border-slate-200 bg-white rounded-2xl shadow-sm">
+                <input type="radio" name="my-accordion-4" />
+                <div className="collapse-title text-lg md:text-xl font-bold text-[#052c65]">
+                  What is the borrowing period?
+                </div>
+                <div className="collapse-content text-slate-600 leading-relaxed">
+                  <p>
+                    The standard borrowing period is **30 days**. You can
+                    request a renewal online through your dashboard if no one
+                    else has reserved the same book.
+                  </p>
+                </div>
+              </div>
+
+              {/* Question 3 */}
+              <div className="collapse collapse-arrow join-item border border-slate-200 bg-white rounded-2xl shadow-sm">
+                <input type="radio" name="my-accordion-4" />
+                <div className="collapse-title text-lg md:text-xl font-bold text-[#052c65]">
+                  Can I reserve a book currently checked out?
+                </div>
+                <div className="collapse-content text-slate-600 leading-relaxed">
+                  <p>
+                    Yes! You can place a hold. Once the book is returned, we
+                    will notify you immediately, and it will be reserved for you
+                    for **3 business days**.
+                  </p>
+                </div>
+              </div>
+
+              {/* Question 4 */}
+              <div className="collapse collapse-arrow join-item border border-slate-200 bg-white rounded-2xl shadow-sm">
+                <input type="radio" name="my-accordion-4" />
+                <div className="collapse-title text-lg md:text-xl font-bold text-[#052c65]">
+                  What if the book I want is already borrowed?
+                </div>
+                <div className="collapse-content text-slate-600 leading-relaxed">
+                  <p>
+                    Simply click the **Reserve** button on the book details
+                    page. You'll join the waiting list and get an automated
+                    email as soon as it's available for pick-up.
+                  </p>
+                </div>
+              </div>
             </div>
-        </Container>
-    );
+          </div>
+        </div>
+      </div>
+    </Container>
+  );
 };
 
 export default Faq;

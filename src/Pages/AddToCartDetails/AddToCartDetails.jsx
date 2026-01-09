@@ -8,12 +8,10 @@ import { useState } from "react";
 import Modal from "../../component/utils/TopNavbar/Modal";
 import { CgShoppingCart } from "react-icons/cg";
 import { GiSelfLove } from "react-icons/gi";
-import "react-tabs/style/react-tabs.css";
+import { HiPlus, HiMinus } from "react-icons/hi";
 import useAuth from "../../hook/useAuth";
 import useAxiosPublic from "../../hook/useAxiosPublic";
-
 import Swal from "sweetalert2";
-
 import Loader from "../../component/Loader/Loader";
 import useBooks from "../../hook/useBooks";
 import BooksCard from "../Home/Books/BooksCard";
@@ -27,8 +25,9 @@ const AddToCartDetails = () => {
   const navigate = useNavigate();
   const { user } = useAuth();
   const axiosPublic = useAxiosPublic();
-  const [count, setCount] = useState(0);
-  // const [tabIndex, setTabIndex] = useState(0);
+  const [count, setCount] = useState(1);
+
+  const data = useLoaderData();
   const {
     _id,
     book_image,
@@ -47,9 +46,8 @@ const AddToCartDetails = () => {
     language,
     publish_years,
     century,
-  } = useLoaderData();
+  } = data || {};
 
-  // add to cart
   const handleAddToCart = () => {
     if (user?.email) {
       const cartItem = {
@@ -58,194 +56,170 @@ const AddToCartDetails = () => {
         cartId: _id,
         bookImg: book_image,
         price: running_price,
+        quantity: count,
       };
       axiosPublic.post("/carts", cartItem).then((res) => {
         if (res.data.insertedId) {
           refetch();
           Swal.fire({
-            position: "top-end",
             icon: "success",
-            title: `${book_name} add to the cart and saved`,
-            showConfirmButton: false,
-            timer: 2500,
+            title: "Added to Cart",
+            text: `${book_name} has been saved to your bag.`,
+            confirmButtonColor: "#052c65",
           });
         }
       });
     } else {
       Swal.fire({
-        title: "Please Login?",
-        text: "After login than add to the cart this!",
-        icon: "warning",
+        title: "Login Required",
+        text: "Please login to add items to your cart",
+        icon: "info",
         showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
-        confirmButtonText: "Yes, Login !",
+        confirmButtonColor: "#052c65",
+        confirmButtonText: "Go to Login",
       }).then((result) => {
-        if (result.isConfirmed) {
+        if (result.isConfirmed)
           navigate("/login", { state: { from: location } });
-        }
       });
     }
   };
 
-  if (isLoading) {
-    return <Loader />;
-  }
+  if (isLoading) return <Loader />;
 
   return (
-    <Container>
-      <div className="mb-32">
-        <HeaderImage image={bannerImg} text={"new books"}></HeaderImage>
-      </div>
-      <div>
-        <div className="">
-          <div className="flex flex-col lg:flex-row">
-            <div className="flex-1  bg-gray-100 p-5 border-2 rounded-lg">
-              <img
-                src={book_image}
-                className="w-full h-[300px] md:h-[475px]  rounded-lg shadow-2xl mx-auto  p-5 "
-              />
-            </div>
-            <div className="flex-1 md:px-9 space-y-5">
-              <h1 className="text-2xl md:mt-2 md:text-5xl font-bold">
-                {book_name}
-              </h1>
-              <div className="flex gap-3">
-                <Rating style={{ maxWidth: 80 }} value={rating} readOnly />
-                <p>(1 customer review)</p>
+    <div className="bg-white">
+      <HeaderImage image={bannerImg} text={"Book Store"} />
+
+      <Container>
+        <div className="py- ">
+          <div className="flex flex-col lg:flex-row gap-12 items-start">
+            {/* Left: Professional Image Gallery Look */}
+            <div className="flex-1 w-full bg-[#f8fafc] rounded-[40px] p-8 md:p-16 border border-slate-100 shadow-inner">
+              <div className="relative group">
+                <img
+                  src={book_image}
+                  className="w-full max-w-[400px] h-auto rounded-2xl shadow-[0_30px_60px_-15px_rgba(0,0,0,0.3)] mx-auto transition-transform duration-700 group-hover:scale-105"
+                  alt={book_name}
+                />
+                <div className="absolute top-0 right-0 bg-red-500 text-white px-4 py-2 rounded-bl-2xl font-black">
+                  SALE
+                </div>
               </div>
-              <p>{description}</p>
-              <p>{long_description.slice(0, 400)}....</p>
-              <h3 className="text-2xl font-bold text-orange-500 font-mono">
+            </div>
+
+            {/* Right: Detailed Info */}
+            <div className="flex-1 space-y-8">
+              <div className="space-y-4">
+                <span className="text-red-500 font-black uppercase tracking-[0.3em] text-xs">
+                  Premium Edition
+                </span>
+                <h1 className="text-4xl md:text-6xl font-black text-[#052c65] tracking-tighter leading-none uppercase">
+                  {book_name}
+                </h1>
+                <div className="flex items-center gap-4">
+                  <Rating style={{ maxWidth: 90 }} value={rating} readOnly />
+                  <span className="text-slate-400 text-sm font-bold uppercase tracking-widest">
+                    (1 Customer Review)
+                  </span>
+                </div>
+              </div>
+
+              <h3 className="text-5xl font-black text-[#052c65] tracking-tight">
                 ${running_price}
               </h3>
-              <div className="md:flex gap-3 ">
-                <div className="flex border  gap-5  mb-2 px-8 rounded-2xl  ">
+
+              <div className="space-y-4">
+                <p className="text-slate-500 text-lg leading-relaxed italic border-l-4 border-red-500 pl-6">
+                  {description}
+                </p>
+                <p className="text-slate-400 leading-relaxed line-clamp-3">
+                  {long_description}
+                </p>
+              </div>
+
+              {/* Action Area */}
+              <div className="flex flex-wrap items-center gap-4 pt-6 pb-10 border-b border-slate-100">
+                {/* Quantity Switcher */}
+                <div className="flex items-center bg-slate-100 rounded-2xl p-2 gap-6 border border-slate-200">
                   <button
-                    onClick={() => setCount(count - 1)}
-                    className="text-3xl "
+                    onClick={() => setCount(Math.max(1, count - 1))}
+                    className="w-10 h-10 flex items-center justify-center bg-white rounded-xl shadow-sm hover:text-red-500 transition-colors"
                   >
-                    -
+                    <HiMinus />
                   </button>
-                  <h1 className="text-2xl">{count}</h1>
+                  <span className="text-xl font-black text-[#052c65] w-6 text-center">
+                    {count}
+                  </span>
                   <button
                     onClick={() => setCount(count + 1)}
-                    className="text-3xl"
+                    className="w-10 h-10 flex items-center justify-center bg-white rounded-xl shadow-sm hover:text-red-500 transition-colors"
                   >
-                    +
+                    <HiPlus />
                   </button>
                 </div>
-                <div className="flex gap-2 items-center">
-                  <Modal />
-                  {/* add to cart */}
-                  <button
-                    onClick={() => handleAddToCart(_id)}
-                    className="btn
-                            relative h-10  origin-top transform rounded-lg border-2 border-[#007aff] bg-[#052c65] text-xl text-sky-500 before:absolute before:top-0 before:block before:h-0 before:w-full before:duration-500 hover:text-white hover:before:absolute hover:before:left-0 hover:before:-z-10 hover:before:h-full hover:before:bg-sky-500
-                            "
-                  >
-                    <CgShoppingCart /> Add To Cart
-                  </button>
-                  <div className="bg-[#052c65] hover:bg-[#052c65] btn btn-circle rounded-full hidden md:block">
-                    <GiSelfLove className="text-xl w-12 h-12 p-3 text-white" />
-                  </div>
-                </div>
+
+                <button
+                  onClick={handleAddToCart}
+                  className="flex-1 h-14 bg-[#052c65] text-white rounded-2xl font-black uppercase tracking-widest text-xs flex items-center justify-center gap-3 hover:bg-red-500 transition-all duration-500 shadow-xl shadow-blue-900/20"
+                >
+                  <CgShoppingCart className="text-xl" /> Add To Cart
+                </button>
+
+                <button className="w-14 h-14 rounded-2xl border-2 border-slate-100 flex items-center justify-center text-slate-400 hover:text-red-500 hover:border-red-500 transition-all group">
+                  <GiSelfLove className="text-2xl group-active:scale-125 transition-transform" />
+                </button>
               </div>
-              {/* ---------- */}
-              <div className="">
-                <div className="md:flex gap-3 border p-5 rounded bg-gray-100 ">
-                  {/* 1 */}
-                  <div className="space-y-6">
-                    <p className="text-gray-500">
-                      <span className="text-[#052c65] font-bold">SKU: </span>
-                      {SKU}
+
+              {/* Specs Grid: High End Clean Layout */}
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+                {[
+                  { label: "SKU", val: SKU },
+                  { label: "Category", val: category },
+                  { label: "Format", val: format },
+                  { label: "Pages", val: total_page },
+                  { label: "Language", val: language },
+                  { label: "Year", val: publish_years },
+                  { label: "Century", val: century },
+                ].map((spec, i) => (
+                  <div key={i}>
+                    <p className="text-[10px] font-black text-slate-300 uppercase tracking-widest">
+                      {spec.label}
                     </p>
-                    <p className="text-gray-500">
-                      <span className="text-[#052c65] font-bold">
-                        Category:{" "}
-                      </span>{" "}
-                      {category}
-                    </p>
-                  </div>
-                  {/* 2 */}
-                  <div className="">
-                    <p className="text-gray-500">
-                      <span className="text-[#052c65] font-bold">Tags: </span>{" "}
-                      Design Low
-                    </p>
-                    <p className="text-gray-500">
-                      <span className="text-[#052c65] font-bold">Format: </span>
-                      {format}
+                    <p className="text-sm font-bold text-[#052c65]">
+                      {spec.val}
                     </p>
                   </div>
-                  {/* 3*/}
-                  <div className="space-y-6">
-                    <p className="text-gray-500">
-                      <span className="text-[#052c65] font-bold">
-                        Total Page:{" "}
-                      </span>{" "}
-                      {total_page}
-                    </p>
-                    <p className="text-gray-500">
-                      <span className="text-[#052c65] font-bold">
-                        Languages:{" "}
-                      </span>
-                      {language}
-                    </p>
-                  </div>
-                  {/* 4 */}
-                  <div className="">
-                    <p className="text-gray-500">
-                      <span className="text-[#052c65] font-bold">
-                        Publish Years:{" "}
-                      </span>{" "}
-                      {publish_years}
-                    </p>
-                    <p className="text-gray-500">
-                      <span className="text-[#052c65] font-bold">
-                        Century:{" "}
-                      </span>
-                      {century}
-                    </p>
-                  </div>
-                </div>
+                ))}
               </div>
             </div>
           </div>
         </div>
-      </div>
-      {/* tabs */}
-      <AddToComment
-        review_date_time={review_date_time}
-        rating={rating}
-        description={description}
-        long_description={long_description}
-        category={category}
-        publish_years={publish_years}
-        author_img={author_img}
-        author_name={author_name}
-        total_page={total_page}
-        format={format}
-        century={century}
-        language={language}
-      ></AddToComment>
-      {/* related book */}
-      <div className=" mt-6 md:mt-10">
-        {/* <h1 className="text-5xl text-red-500 mb-4 text-center">Please Choose Your Books</h1> */}
-        <div className="text-center  mb-3">
-          <h1 className="text-xl md:text-3xl font-medium">Related Books</h1>
-          <p className="text-gray-500">
-            Books have always been a gateway to knowledge, adventure, and
-            self-discovery.{" "}
-          </p>
+
+        {/* Dynamic Tabs Section */}
+        <div className="mt-20">
+          <AddToComment {...data} />
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-          {books.map((book) => (
-            <BooksCard key={book._id} book={book}></BooksCard>
-          ))}
+
+        {/* Related Books: Luxury Slider Style Grid */}
+        <div className="mt-32 pb-20">
+          <div className="text-center mb-16 space-y-2">
+            <h2 className="text-4xl font-black text-[#052c65] uppercase tracking-tighter">
+              Related Treasures
+            </h2>
+            <div className="w-20 h-1 bg-red-500 mx-auto rounded-full"></div>
+            <p className="text-slate-400 pt-4">
+              Curated selections specifically for your library.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            {books.slice(0, 4).map((book) => (
+              <BooksCard key={book._id} book={book} />
+            ))}
+          </div>
         </div>
-      </div>
-    </Container>
+      </Container>
+    </div>
   );
 };
 

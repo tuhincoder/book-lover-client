@@ -1,114 +1,188 @@
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import { FaPhoneVolume } from "react-icons/fa";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import {
+  FaPhoneVolume,
+  FaFacebookF,
+  FaTwitter,
+  FaInstagram,
+  FaLinkedinIn,
+} from "react-icons/fa";
 import { MdOutlineAttachEmail } from "react-icons/md";
 import { IoMdTime } from "react-icons/io";
 import { IoLocationOutline } from "react-icons/io5";
-import navLogo from '../../../assets/images/logo/navLogo.jpg'
-
-
-
+import navLogo from "../../../assets/images/logo/navLogo.jpg";
 
 const Footer = () => {
-    const handleSubsCribe = e => {
-        e.preventDefault()
-        toast('thanks for subsCribe our news later')
-    }
-    return (
+  const handleSubsCribe = (e) => {
+    e.preventDefault();
+    toast.success("Thanks for subscribing!");
+    e.target.reset();
+  };
 
-        <div className='bg-[#052c65] text-white  '>
-            <div className='pt-16 md:flex items-center mx-auto  justify-around'>
-                {/* 1 */}
-                <div className='flex items-center gap-3'>
-                    <FaPhoneVolume className='text-5xl border border-dashed p-2 rounded-full' />
-                    <div>
-                        <p className='md:text-lg'>Call Us 7/24</p>
-                        <h2 className='md:text-xl font-bold'>+208-555-0112</h2>
-                    </div>
-                </div>
-                {/* 2 */}
-                <div className='flex items-center gap-3 space-y-6 md:space-y-0'>
-                    <MdOutlineAttachEmail className=' text-5xl border border-dashed p-2 rounded-full' />
-                    <div>
-                        <p className='md:text-lg'>Make a Quote</p>
-                        <h2 className='md:text-xl font-bold'>popular.library@gmail.com</h2>
-                    </div>
-                </div>
-                {/* 3 */}
-                <div className='flex items-center gap-3'>
-                    <IoMdTime className='text-5xl border border-dashed p-2 rounded-full' />
-                    <div>
-                        <p className='md:text-lg'>Opening Hour</p>
-                        <h2 className='md:text-xl font-bold'>Sunday - Fri: 9 aM - 6 pM</h2>
-                    </div>
-                </div>
-                {/* 4 */}
-                <div className='flex items-center gap-3 space-y-6 md:space-y-0'>
-                    <IoLocationOutline className='text-5xl border border-dashed p-2 rounded-full' />
-                    <div>
-                        <p className='md:text-lg'>Location</p>
-                        <h2 className='md:text-xl font-bold'> Dhaka, Uttara</h2>
-                    </div>
-                </div>
-
+  return (
+    <footer className="bg-[#052c65] text-white w-full mt-14">
+      {/* Top Contact Info Bar - Full Width Background */}
+      <div className="bg-[#042452] py-10 border-b border-white/5 w-full">
+        <div className="max-w-[1440px] mx-auto px-6 md:px-12">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            {/* 1. Phone */}
+            <div className="flex items-center gap-4 group">
+              <div className="w-14 h-14 flex items-center justify-center border border-dashed border-red-500 rounded-full group-hover:bg-red-500 transition-all duration-300">
+                <FaPhoneVolume className="text-2xl" />
+              </div>
+              <div>
+                <p className="text-slate-400 text-sm">Call Us 24/7</p>
+                <h2 className="text-lg font-bold">+208-555-0112</h2>
+              </div>
             </div>
-            <div className="divider divider-primary "></div>
-
-            {/* -----main footer------ */}
-            <div className=''>
-                <div className=" md:flex items-center justify-evenly  text-lg  py-8 ">
-                    <div className='flex justify-around md:justify-evenly w-full '>
-                        <nav className='hidden lg:block'>
-                            <div className='flex items-center gap-2'>
-                                <img className='w-12 h-12 rounded-full ' src={navLogo} alt="" />
-                                <p className='text-xl font-bold'>Popular Library</p>
-                            </div>
-                            <p className='mt-2'>Welcome to the Library Corner, <br /> where knowledge meets curiosity.</p>
-
-                        </nav>
-                        <nav className='flex flex-col'>
-                            <h6 className="footer-title">Customer Support</h6>
-                            <a className="link link-hover">Store List</a>
-                            <a className="link link-hover">Opening Hours</a>
-                            <a className="link link-hover">Contact Us</a>
-                            <a className="link link-hover">Return Policy</a>
-                        </nav>
-                        <nav className='flex flex-col'>
-                            <h6 className="footer-title">Categories</h6>
-                            <a className="link link-hover">History</a>
-                            <a className="link link-hover">Novel</a>
-                            <a className="link link-hover">Drama</a>
-                            <a className="link link-hover">Thriller</a>
-                        </nav>
-                    </div>
-                    <div className=' flex justify-center mt-5'>
-
-                        <form onSubmit={handleSubsCribe}>
-                            <h6 className="footer-title">Newsletter</h6>
-                            <p>Sign up to searing <br /> weekly newsletter to get the latest updates.</p>
-                            <fieldset className="form-control w-80">
-                                <label className="label">
-                                    <span className="label-text text-white">Enter your email address</span>
-                                </label>
-                                <div className="join">
-                                    <input type="text" placeholder=" Email" className="input input-bordered join-item w-1/2" />
-
-                                    <input type="submit" className="btn btn-primary join-item" value="SubsCribe " />
-                                </div>
-                            </fieldset>
-                        </form>
-                    </div>
-                </div>
-                {/* bottom footer */}
-
-
-                <div className=" py-5 text-center bg-[#007aff]  dark:text-white">
-                    <p>&copy; All Copyright 2024 by Popular library</p>
-                </div>
+            {/* 2. Email */}
+            <div className="flex items-center gap-4 group">
+              <div className="w-14 h-14 flex items-center justify-center border border-dashed border-red-500 rounded-full group-hover:bg-red-500 transition-all duration-300">
+                <MdOutlineAttachEmail className="text-2xl" />
+              </div>
+              <div>
+                <p className="text-slate-400 text-sm">Email Address</p>
+                <h2 className="text-lg font-bold break-all">
+                  popular.library@gmail.com
+                </h2>
+              </div>
             </div>
-        </div >
+            {/* 3. Time */}
+            <div className="flex items-center gap-4 group">
+              <div className="w-14 h-14 flex items-center justify-center border border-dashed border-red-500 rounded-full group-hover:bg-red-500 transition-all duration-300">
+                <IoMdTime className="text-2xl" />
+              </div>
+              <div>
+                <p className="text-slate-400 text-sm">Opening Hour</p>
+                <h2 className="text-lg font-bold">Sun - Fri: 9 AM - 6 PM</h2>
+              </div>
+            </div>
+            {/* 4. Location */}
+            <div className="flex items-center gap-4 group">
+              <div className="w-14 h-14 flex items-center justify-center border border-dashed border-red-500 rounded-full group-hover:bg-red-500 transition-all duration-300">
+                <IoLocationOutline className="text-2xl" />
+              </div>
+              <div>
+                <p className="text-slate-400 text-sm">Our Location</p>
+                <h2 className="text-lg font-bold">Dhaka, Uttara</h2>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
-    );
+      {/* Main Footer Content - Full Width Background */}
+      <div className="w-full py-16">
+        <div className="max-w-[1440px] mx-auto px-6 md:px-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+            {/* Brand Section */}
+            <div className="space-y-6">
+              <div className="flex items-center gap-3">
+                <img
+                  className="w-12 h-12 rounded-full ring-2 ring-red-500 p-0.5 bg-white"
+                  src={navLogo}
+                  alt="Logo"
+                />
+                <p className="text-2xl font-black uppercase tracking-tighter">
+                  Popular <span className="text-red-500">Library</span>
+                </p>
+              </div>
+              <p className="text-slate-400 leading-relaxed">
+                Welcome to the Library Corner, where knowledge meets curiosity.
+                Discover thousands of books and join our community.
+              </p>
+              <div className="flex gap-3">
+                {[FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn].map(
+                  (Icon, index) => (
+                    <a
+                      key={index}
+                      href="#"
+                      className="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center hover:bg-red-500 transition-all duration-300 border border-white/10"
+                    >
+                      <Icon className="text-sm" />
+                    </a>
+                  )
+                )}
+              </div>
+            </div>
+
+            {/* Quick Links */}
+            <div>
+              <h6 className="text-xl font-bold mb-6 relative inline-block">
+                Quick Links
+                <span className="absolute bottom-0 left-0 w-8 h-1 bg-red-500 rounded-full"></span>
+              </h6>
+              <ul className="space-y-4 text-slate-400">
+                {[
+                  "Store List",
+                  "Opening Hours",
+                  "Contact Us",
+                  "Return Policy",
+                ].map((item) => (
+                  <li key={item}>
+                    <a className="hover:text-red-500 transition-colors cursor-pointer flex items-center gap-2">
+                      • {item}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Categories */}
+            <div>
+              <h6 className="text-xl font-bold mb-6 relative inline-block">
+                Categories
+                <span className="absolute bottom-0 left-0 w-8 h-1 bg-red-500 rounded-full"></span>
+              </h6>
+              <ul className="space-y-4 text-slate-400">
+                {["History", "Novel", "Drama", "Thriller"].map((item) => (
+                  <li key={item}>
+                    <a className="hover:text-red-500 transition-colors cursor-pointer flex items-center gap-2">
+                      • {item}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Newsletter */}
+            <div>
+              <h6 className="text-xl font-bold mb-6 relative inline-block">
+                Newsletter
+                <span className="absolute bottom-0 left-0 w-8 h-1 bg-red-500 rounded-full"></span>
+              </h6>
+              <p className="text-slate-400 mb-6">
+                Subscribe to get the latest updates and book offers.
+              </p>
+              <form onSubmit={handleSubsCribe} className="space-y-3">
+                <input
+                  type="email"
+                  placeholder="Your Email Address"
+                  className="w-full bg-white/10 border border-white/10 rounded-xl px-4 py-3 outline-none focus:border-red-500 transition-all"
+                  required
+                />
+                <button
+                  type="submit"
+                  className="w-full bg-red-500 hover:bg-red-600 text-white font-bold py-3 rounded-xl transition-all shadow-lg"
+                >
+                  Subscribe Now
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Copyright Bar - Full Width */}
+      <div className="py-6 text-center bg-[#042452] border-t border-white/5 w-full">
+        <p className="text-slate-400 text-sm">
+          &copy; {new Date().getFullYear()}{" "}
+          <span className="text-white font-bold">Popular Library</span>. All
+          Rights Reserved.
+        </p>
+      </div>
+    </footer>
+  );
 };
 
 export default Footer;
