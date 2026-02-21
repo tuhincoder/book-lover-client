@@ -9,7 +9,6 @@ import LogIn from "../Pages/LogIn/LogIn";
 import Register from "../Pages/Register/Register";
 import BookCategory from "../Pages/Home/Books/BookCategory";
 import BookDetails from "../Pages/Home/Books/BookDetails";
-import PrivetRout from "./PrivetRout";
 import ReadDetails from "../Pages/Home/Books/ReadDetails";
 import UpdateBook from "../Pages/AllBooks/UpdateBook";
 import About from "../Pages/About/About";
@@ -48,11 +47,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/categoryBookDetails/:id",
-        element: (
-          <PrivetRout>
-            <BookDetails></BookDetails>
-          </PrivetRout>
-        ),
+        element: <BookDetails></BookDetails>,
         loader: ({ params }) =>
           fetch(`https://book-lovers-server.vercel.app/books/${params.id}`),
       },
@@ -69,21 +64,13 @@ const router = createBrowserRouter([
       },
       {
         path: "updateAllBook/:id",
-        element: (
-          <PrivetRout>
-            <UpdateBook></UpdateBook>
-          </PrivetRout>
-        ),
+        element: <UpdateBook></UpdateBook>,
         loader: ({ params }) =>
           fetch(`https://book-lovers-server.vercel.app/books/${params.id}`),
       },
       {
         path: "/borrowedBook",
-        element: (
-          <PrivetRout>
-            <BorrowedBooks />
-          </PrivetRout>
-        ),
+        element: <BorrowedBooks />,
       },
       {
         path: "/about",
