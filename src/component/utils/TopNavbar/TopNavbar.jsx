@@ -1,5 +1,4 @@
 import { MdOutlineMail, MdOutlinePhoneForwarded } from "react-icons/md";
-import { IoMdTime } from "react-icons/io";
 import { IoChatbubblesSharp } from "react-icons/io5";
 import { FaSignOutAlt, FaLock } from "react-icons/fa";
 import { Link } from "react-router-dom";
@@ -18,7 +17,6 @@ const TopNavbar = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      // Jodi scroll 50px er beshi hoy, tobe TopNavbar hide hobe
       if (window.scrollY > 50) {
         setIsVisible(false);
       } else {

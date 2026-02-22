@@ -1,6 +1,6 @@
 import Swal from "sweetalert2";
 import { useLoaderData } from "react-router-dom";
-import Container from "../../component/common/Container";
+// import Container from "../../component/common/Container";
 import HeaderText from "../../component/common/HeaderText";
 import useAxiosSecure from "../../hook/useAxiosSecure";
 
@@ -50,102 +50,99 @@ const UpdateBook = () => {
 
   return (
     <div className="bg-[#fcfcfd] min-h-screen py-3 ">
-      <Container>
-        {/* Header - Mobile friendly size */}
-        <div className="mb-8 md:mb-12">
-          <HeaderText
-            Heading={"Update Book"}
-            subHeading={"Edit records instantly"}
-          />
-        </div>
+      {/* <Container> */}
+      {/* Header - Mobile friendly size */}
+      <div className="mb-8 md:mb-12">
+        <HeaderText
+          Heading={"Update Book"}
+          subHeading={"Edit records instantly"}
+        />
+      </div>
 
-        <div className="max-w-3xl mx-auto">
-          <div className="bg-white p-5 md:p-10 rounded-[25px] md:rounded-[40px] shadow-2xl shadow-slate-200/60 border border-slate-50">
-            <form
-              onSubmit={handleBookUpdate}
-              className="space-y-4 md:space-y-6"
-            >
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
-                {/* Book Name */}
-                <div>
-                  <label className={labelClass}>Book Name</label>
-                  <input
-                    type="text"
-                    defaultValue={book_name}
-                    name="name"
-                    className={inputClass}
-                    required
-                  />
-                </div>
-
-                {/* Category */}
-                <div>
-                  <label className={labelClass}>Category</label>
-                  <select
-                    name="category"
-                    defaultValue={currentCategory || "default"}
-                    className={`${inputClass} cursor-pointer`}
-                  >
-                    <option disabled value="default">
-                      Select Category
-                    </option>
-                    <option value="novel">Novel</option>
-                    <option value="Thriller">Thriller</option>
-                    <option value="History">History</option>
-                    <option value="Drama">Drama</option>
-                  </select>
-                </div>
-
-                {/* Author Name */}
-                <div>
-                  <label className={labelClass}>Author Name</label>
-                  <input
-                    type="text"
-                    defaultValue={author_name}
-                    name="authorName"
-                    className={inputClass}
-                    required
-                  />
-                </div>
-
-                {/* Rating */}
-                <div>
-                  <label className={labelClass}>Rating (1-5)</label>
-                  <input
-                    defaultValue={rating}
-                    type="text"
-                    name="rating"
-                    className={inputClass}
-                    required
-                  />
-                </div>
-              </div>
-
-              {/* Image URL - Full Width */}
+      <div className="max-w-3xl mx-auto">
+        <div className="bg-white p-5 md:p-10 rounded-[25px] md:rounded-[40px] shadow-2xl shadow-slate-200/60 border border-slate-50">
+          <form onSubmit={handleBookUpdate} className="space-y-4 md:space-y-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 ">
+              {/* Book Name */}
               <div>
-                <label className={labelClass}>Cover Image URL</label>
+                <label className={labelClass}>Book Name</label>
                 <input
                   type="text"
-                  defaultValue={image}
-                  name="photo"
+                  defaultValue={book_name}
+                  name="name"
                   className={inputClass}
                   required
                 />
               </div>
 
-              {/* Submit Button */}
-              <div className="pt-4">
-                <button
-                  type="submit"
-                  className="w-full bg-[#052c65] hover:bg-red-500 text-white font-black py-3.5 md:py-4 rounded-xl md:rounded-2xl transition-all duration-500 uppercase tracking-widest text-[10px] md:text-xs shadow-lg shadow-blue-900/20 active:scale-[0.98]"
+              {/* Category */}
+              <div>
+                <label className={labelClass}>Category</label>
+                <select
+                  name="category"
+                  defaultValue={currentCategory || "default"}
+                  className={`${inputClass} cursor-pointer`}
                 >
-                  Update Records
-                </button>
+                  <option disabled value="default">
+                    Select Category
+                  </option>
+                  <option value="novel">Novel</option>
+                  <option value="Thriller">Thriller</option>
+                  <option value="History">History</option>
+                  <option value="Drama">Drama</option>
+                </select>
               </div>
-            </form>
-          </div>
+
+              {/* Author Name */}
+              <div>
+                <label className={labelClass}>Author Name</label>
+                <input
+                  type="text"
+                  defaultValue={author_name}
+                  name="authorName"
+                  className={inputClass}
+                  required
+                />
+              </div>
+
+              {/* Rating */}
+              <div>
+                <label className={labelClass}>Rating (1-5)</label>
+                <input
+                  defaultValue={rating}
+                  type="text"
+                  name="rating"
+                  className={inputClass}
+                  required
+                />
+              </div>
+            </div>
+
+            {/* Image URL - Full Width */}
+            <div>
+              <label className={labelClass}>Cover Image URL</label>
+              <input
+                type="text"
+                defaultValue={image}
+                name="photo"
+                className={inputClass}
+                required
+              />
+            </div>
+
+            {/* Submit Button */}
+            <div className="pt-4">
+              <button
+                type="submit"
+                className="w-full bg-[#052c65] hover:bg-red-500 text-white font-black py-3.5 md:py-4 rounded-xl md:rounded-2xl transition-all duration-500 uppercase tracking-widest text-[10px] md:text-xs shadow-lg shadow-blue-900/20 active:scale-[0.98]"
+              >
+                Update Records
+              </button>
+            </div>
+          </form>
         </div>
-      </Container>
+      </div>
+      {/* </Container> */}
     </div>
   );
 };

@@ -7,7 +7,7 @@ const useBooks = () => {
     queryKey: ["mainBooks"],
     queryFn: async () => {
       const res = await axiosPublic.get("/books");
-      console.log("this data is not get into the server: =>", res.data);
+      // console.log("this data is not get into the server: =>", res.data);
       return res.data;
     },
   });

@@ -9,7 +9,7 @@ const Banner = () => {
       id: "slide1",
       prev: "#slide3",
       next: "#slide2",
-      image: banner1,
+      image: banner2,
       title: "Find Books For <br/> All Ages",
       sub: "Choose Your Book",
     },
@@ -17,7 +17,7 @@ const Banner = () => {
       id: "slide2",
       prev: "#slide1",
       next: "#slide3",
-      image: banner2,
+      image: banner1,
       title: "Knowledge is <br/> Power",
       sub: "Learn Every Day",
     },
@@ -32,7 +32,7 @@ const Banner = () => {
   ];
 
   return (
-    <div className="w-full px-0">
+    <div className="w-full px-0 ">
       <div className="carousel w-full h-[300px] sm:h-[400px] md:h-[550px] lg:h-[650px]">
         {slides.map((slide) => (
           <div

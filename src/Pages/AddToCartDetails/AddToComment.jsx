@@ -91,7 +91,7 @@ const AddToComment = ({
 
         {/* --- Tab Panel: Description --- */}
         <TabPanel>
-          <div className="grid md:grid-cols-2 gap-6 md:gap-10 animate-fadeIn">
+          <div className="grid md:grid-cols-2 gap-6 md:gap-10 animate-fadeIn ">
             <div className="space-y-4 md:space-y-6">
               <h3 className="text-xl md:text-2xl font-black text-[#052c65] uppercase tracking-tighter">
                 Summary
@@ -153,7 +153,7 @@ const AddToComment = ({
 
         {/* --- Tab Panel: Reviews --- */}
         <TabPanel>
-          <div className="grid lg:grid-cols-12 gap-8 md:gap-12 animate-fadeIn">
+          <div className="grid lg:grid-cols-12 gap-8 md:gap-12 animate-fadeIn ">
             {/* Review List */}
             <div className="lg:col-span-7 space-y-6 md:space-y-8 order-2 lg:order-1">
               <h3 className="text-xl md:text-2xl font-black text-[#052c65] uppercase tracking-tighter mb-4 md:mb-8">
@@ -230,7 +230,7 @@ const AddToComment = ({
                   onSubmit={handleComment}
                   className="space-y-4"
                 >
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 ">
                     <div className="space-y-1">
                       <label className="text-[9px] md:text-[10px] font-black text-white/50 uppercase tracking-widest ml-2">
                         Name

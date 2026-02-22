@@ -10,7 +10,8 @@ const MainLayOut = () => {
       <ScrollToTop />
       <TopNavbar />
       <Navbar />
-      <div className=" min-h-[calc(100vh-316px)]">
+
+      <div className="max-w-screen-xl mx-auto">
         <Outlet></Outlet>
       </div>
       <Footer />
